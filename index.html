@@ -20,18 +20,19 @@
         <h2>Nes Calculator <i class="nes-jp-logo"></i></h2>
 
         <div class="nes-container with-title is-centered" id="calculator">
-          <div
-            class="nes-container is-rounded"
-            id="operation"
-            :value="showScreen"
-          >
+          <div class="nes-container is-rounded" id="screen" :value="showScreen">
             {{showScreen}}
           </div>
+
+          <div class="nes-container is-rounded" id="operation" :value="result">
+            {{result}}
+          </div>
+
           <div class="nes-container is-rounded" id="teclado">
             <button
               type="button"
               class="nes-btn is-warning"
-              @click="operationScreen"
+              @click="calculate"
               :value="op"
               v-for="op in operators"
             >
@@ -41,19 +42,14 @@
             <button
               type="button"
               class="nes-btn"
-              @click="numberScreen"
+              @click="calculate"
               :value="n"
               v-for="n in keys"
             >
               {{n}}
             </button>
 
-            <button
-              type="button"
-              class="nes-btn"
-              value="."
-              @click="numberScreen"
-            >
+            <button type="button" class="nes-btn" value="." @click="calculate">
               .
             </button>
 
@@ -68,7 +64,7 @@
             <button
               type="button"
               class="nes-btn is-error"
-              @click="equalFunction"
+              @click="equal"
               value="="
             >
               =
